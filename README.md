@@ -121,4 +121,4 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
 
 </details>
 
-## Demo video on [YouTube](https://youtube.com/watch?v=z_Fuu8PZkMg&si=LElkWxMb44ULD6tc).📹
+## Demo video on [YouTube](https://youtube.com/watch?v=4m5PInlXqao&si=Bl820Xt7EAQ1age-).📹

@@ -91,9 +91,9 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
 
    **Settings Options**
 <p float="left">
-  <img src="images/image1.png" alt="Matrix Light" width="100" />
-  <img src="images/image2.png" alt="Sound" width="100" />
-  <img src="images/image3.png" alt="Reset" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/MatrixLight.png?raw=true" alt="Matrix Light" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Sound.png?raw=true" alt="Sound" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/ResetHS.png?raw=true" alt="ResetHS" width="100" />
 </p>
 
    **Rooms**
@@ -121,4 +121,4 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
 
 </details>
 
-## Demo video on [YouTube](https://github.com/lemnaruamedeea/IntroductionToRobotics).📹
+## Demo video on [YouTube](https://youtube.com/watch?v=z_Fuu8PZkMg&si=LElkWxMb44ULD6tc).📹

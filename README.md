@@ -73,14 +73,49 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
   - EEPROM.h (for memory)
 
 ### EEPROM Memory addresses 💾
+![EEPROMAddresses](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/EEPROMAddresses.jpeg?raw=true)
 
+### Matrix Animation ✨
+   **Main Menu**
+<p float="left">
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/MainMenu.png?raw=true" alt="Main Menu" width="100" />
+</p>
 
+   **Main Menu Options**
+<p float="left">
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Info.png?raw=true" alt="Info" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Settings.png?raw=true" alt="Settings" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/HighScore.png?raw=true" alt="Highscore" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/About.png?raw=true" alt="About" width="100" />
+</p>
+
+   **Settings Options**
+<p float="left">
+  <img src="images/image1.png" alt="Matrix Light" width="100" />
+  <img src="images/image2.png" alt="Sound" width="100" />
+  <img src="images/image3.png" alt="Reset" width="100" />
+</p>
+
+   **Rooms**
+<p float="left">
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Room1.png?raw=true" alt="Room 1" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Room2.png?raw=true" alt="Room 2" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Room3.png?raw=true" alt="Room 3" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Room4.png?raw=true" alt="Room 4" width="100" />
+</p>
+
+   **Win/Lose**
+<p float="left">
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Win1.png?raw=true" alt="Win1" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Win2.png?raw=true" alt="Win2" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixAnimations/Lose.png?raw=true" alt="Lose" width="100" />
+</p>
 
 ### LCD Simbols 🈁
 <p float="left">
-  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Empty.png?raw=true" alt="Image 1" width="100" />
-  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Full.png?raw=true" alt="Image 2" width="100" />
-  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Heart.png?raw=true" alt="Image 3" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Empty.png?raw=true" alt="Empty" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Full.png?raw=true" alt="Full" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Heart.png?raw=true" alt="Arrows" width="100" />
    <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/UpDownArrows.png?raw=true" alt="Image 4" width="100" />
 </p>
 

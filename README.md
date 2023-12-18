@@ -38,30 +38,52 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
 <details>
 <summary><h2>Setup 🔌🛠️</h2></summary>
 
-Components used:
+### Components used:
 
--Arduino Uno Board
+   -Arduino Uno Board
+   -Joystick
+   -8x8 LED Matrix
+   -LCD Display
+   -MAX7219
+   -Buzzer
+   -2 Resistors
+   -2 Capacitors
+   -1 Mini-Breadboard
+   -1 Mid-Breadboard
+   -Looots of connecting wires
 
--Joystick
+![DriverScheme](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/DriverScheme.png?raw=true)
+![JoystickConnectionsTable](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/JoystickConnection.png?raw=true)
+![LCDScheme](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDScheme.png?raw=true)
+![MatrixConnectionsTable](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/MatrixConnectionsTable.png?raw=true)
 
--8x8 LED Matrix
-
--LCD Display
-
--MAX7219
-
--Buzzer
-
--1 Resistor
-
--2 Capacitors
-
--1 Mini-Breadboard
-
--1 Mid-Breadboard
-
--Looots of connecting wires
-
-
+![SetupImg1](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/SetupImg1.jpeg?raw=true)
+![SetupImg2](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/SetupImg2.jpeg?raw=true)
 
 </details>
+
+<details>
+<summary><h2>Code Details 💻</h2></summary>
+
+### [Code](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/BombMania.ino). 💻🖱️
+
+### Libraries 🗂️
+  - LiquidCrystal.h (for LCD control)
+  - LedControl.h (for matrix control)
+  - EEPROM.h (for memory)
+
+### EEPROM Memory addresses 💾
+
+
+
+### LCD Simbols 🈁
+<p float="left">
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Empty.png?raw=true" alt="Image 1" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Full.png?raw=true" alt="Image 2" width="100" />
+  <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/Heart.png?raw=true" alt="Image 3" width="100" />
+   <img src="https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/LCDSimbols/UpDownArrows.png?raw=true" alt="Image 4" width="100" />
+</p>
+
+</details>
+
+## Demo video on [YouTube](https://github.com/lemnaruamedeea/IntroductionToRobotics).📹

@@ -122,3 +122,6 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
 </details>
 
 ## Demo video on [YouTube](https://youtube.com/watch?v=4m5PInlXqao&si=Bl820Xt7EAQ1age-).📹
+
+![Game1](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/Game1.jpeg?raw=true)
+![Game2](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/Game2.jpeg?raw=true)

@@ -47,19 +47,16 @@ int numOfBombs = 0;
 int option = 0;
 int setting = 0;
 int lives = 3;
-int lcdBrightness = 4;
-int matrixBrightness = 4;
+int lcdBrightness;
+int matrixBrightness;
 int timeIndex = 0;
 int index = 1;
 int letter1;
 int letter2;
 int letter3;
-int name[] = { 0, 0, 0 };  //AAA
-int allNames[] = { 97, 97, 97, 97, 97, 97, 97, 97, 97 };
+int name[] = { 0, 0, 0 };
+int allNames[] = { 65, 65, 65, 65, 65, 65, 65, 65, 65 };
 int currentLetter = 0;
-int frequencies[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 };  // Frequencies for the boom effect
-int numFrequencies = 10;                                                    // Number of frequencies in the array
-int currentFrequency = 0;
 
 char firstLet;
 char secondLet;
@@ -70,10 +67,6 @@ const unsigned long bombDuration = 2000;  // Duration before bomb explodes in mi
 
 const int start = 0;
 const int one = 1;
-const int fillPercent1 = 30;
-const int fillPercent2 = 40;
-const int fillPercent3 = 50;
-const int fillPercent4 = 60;
 const int xInitialPos = 1;
 const int yInitialPos = 6;
 const int twoSecondsDelay = 2000;
@@ -82,7 +75,7 @@ const int lcdBrightnessAddress = 0;
 const int matrixBrightnessAddress = 1;
 const int soundAddress = 2;
 const int highScoreAddress = 3;
-const int playerAddress = 6;
+const int playerAddress = 15;
 const int minLvl = 0;
 const int maxLvl = 5;
 const int startLives = 3;
@@ -135,9 +128,9 @@ bool nameChange = false;      // Flag to track if the name changed
 int lcdBrightnessLevels[] = { 0, 51, 102, 153, 204, 255 };  //lcd brightness levels
 int matrixBrightnessLevels[] = { 1, 3, 6, 9, 12, 15 };      //matrix brightness levels
 
-String const mainMenuOptions[] = { "START", "INFO", "SETTINGS", "HIGH SCORE", "ABOUT" };          //main menu options
+String const mainMenuOptions[] = { "START", "HOW TO PLAY", "SETTINGS", "HIGH SCORE", "ABOUT" };   //main menu options
 String const settingsOptions[] = { "LCD BRIGHTNESS", "MATRIX LIGHT", "SOUND", "RESET", "EXIT" };  //settings options
-unsigned long int topTimes[] = { 0, 0, 0 };                                                       // Initialize with 0
+unsigned long topTimes[] = { 0, 0, 0 };                                                       // Initialize with 0
 
 const int firstPos = 0;
 const int numTimes = 3;
@@ -367,17 +360,6 @@ byte full[8] = {
   0b00000
 };
 
-byte empty[8] = {
-  0b00000,
-  0b11111,
-  0b10001,
-  0b10001,
-  0b10001,
-  0b10001,
-  0b11111,
-  0b00000
-};
-
 byte heart[8] = {
   0b00000,
   0b01010,
@@ -410,13 +392,19 @@ void setup() {
   pinMode(pinSW, INPUT_PULLUP);
   pinMode(buzzerPin, OUTPUT);
 
-  lcd.createChar(1, empty);  // empty
-  lcd.createChar(2, full);   //full
+  lcd.createChar(2, full);  //full
   lcd.createChar(3, heart);
   lcd.createChar(4, upDown);  // up/down arrows
 
-  //lcdBrightness = EEPROM.read(lcdBrightnessAddress);
-  // matrixBrightness = EEPROM.read(matrixBrightnessAddress);
+  lcdBrightness = EEPROM.read(lcdBrightnessAddress);
+  matrixBrightness = EEPROM.read(matrixBrightnessAddress);
+  sound = EEPROM.read(soundAddress);
+  for (int i = 0; i < 12; i = i + 4) {
+    EEPROM.get(highScoreAddress + i, topTimes[i / 4]);
+  }
+  for (int i = 0; i < allNamesLet; i++) {
+    allNames[i] = EEPROM.read(playerAddress + i);
+  }
 
   analogWrite(brightnessPin, lcdBrightnessLevels[lcdBrightness]);
   lc.setIntensity(0, matrixBrightnessLevels[matrixBrightness]);
@@ -656,8 +644,8 @@ void mainMenu() {
     yPos = yInitialPos;
     matrixChanged == true;
 
-  } else if (option == second)  // info
-  {                             //enter info
+  } else if (option == second)  // how to play
+  {                             //enter how to play
     inMainMenu = false;
     gameStarted = false;
     inSettings = false;
@@ -809,7 +797,7 @@ void lcdBrightnessFunc() {
     if (level >= 0) {
       lcd.write(2);
     } else {
-      lcd.write(1);
+      lcd.write(" ");
     }
     level--;
   }
@@ -840,7 +828,7 @@ void matrixBrightnessFunc() {
     if (level >= 0) {
       lcd.write(2);
     } else {
-      lcd.write(1);
+      lcd.write(" ");
     }
     level--;
   }
@@ -870,13 +858,11 @@ void soundFunc() {
     lcd.write(2);
     lcd.write(" ");
     lcd.print(F("OFF"));
-    lcd.write(1);
   }
 
   else {
     lcd.print(F("ON"));
-    lcd.write(1);
-    lcd.write(" ");
+    lcd.write("  ");
     lcd.print(F("OFF"));
     lcd.write(2);
   }
@@ -902,13 +888,11 @@ void resetHSFunc() {
     lcd.write(2);
     lcd.write(" ");
     lcd.print(F("NO"));
-    lcd.write(1);
   }
 
   else {
     lcd.print(F("YES"));
-    lcd.write(1);
-    lcd.write(" ");
+    lcd.write("  ");
     lcd.print(F("NO"));
     lcd.write(2);
   }
@@ -957,8 +941,8 @@ void highScore() {
 
 void saveTopTimesToEEPROM() {
   // Save the top times to EEPROM
-  for (int i = 0; i < numTimes; i++) {
-    EEPROM.update(highScoreAddress + i, topTimes[i]);
+  for (int i = 0; i < 12; i = i + 4) {
+    EEPROM.put(highScoreAddress + i, topTimes[i / 4]);
   }
   for (int i = 0; i < allNamesLet; i = i + 3) {
     EEPROM.update(playerAddress + i, allNames[i]);
@@ -984,8 +968,6 @@ void updateTopTimes() {
   allNames[firstPos + 1] = secondLet;
   allNames[firstPos + 2] = thirdLet;
 
-  saveTopTimesToEEPROM();  // Save updated top times to EEPROM
-
   // Sort the top times in ascending order
   for (int i = 0; i < numTimes - 1; i++) {
     for (int j = i + 1; j < numTimes; j++) {
@@ -1001,6 +983,8 @@ void updateTopTimes() {
       }
     }
   }
+
+  saveTopTimesToEEPROM();  // Save updated top times to EEPROM
 }
 
 bool newScore() {
@@ -1050,7 +1034,7 @@ void setName() {
 }
 
 
-void displayTopTimes(unsigned long int time) {
+void displayTopTimes(unsigned long time) {
   // Display the top times
   // unsigned long int time = topTimes[i];
   unsigned long int minutes = time / 60000;  // Convert milliseconds to minutes
@@ -1208,6 +1192,9 @@ void blinkForPlayer() {
 
 void blinkForBomb() {
   unsigned long currentTime = millis();
+  int frequencies[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 };  // Frequencies for the boom effect
+  int numFrequencies = 10;                                                    // Number of frequencies in the array
+  int currentFrequency = 0;
 
   if (millis() - bombTime < bombDuration) {
 
@@ -1238,6 +1225,10 @@ void blinkForBomb() {
 }
 
 void generateRoom() {
+  const int fillPercent1 = 30;
+  const int fillPercent2 = 40;
+  const int fillPercent3 = 50;
+  const int fillPercent4 = 60;
   // Reset the entire matrix
   for (int row = 0; row < matrixSize; row++) {
     for (int col = 0; col < matrixSize; col++) {
@@ -1378,7 +1369,7 @@ void updatePositions() {
       }
     }
 
-    else if (winner && newScore() == true) {
+    else if (winner && newScore() == true) {  //Left
       if (currentLetter > 0) {
         currentLetter--;
         nameChange = true;
@@ -1440,7 +1431,7 @@ void updatePositions() {
     }
 
     else if (winner && newScore() == true) {
-      if (currentLetter < 2) {
+      if (currentLetter < 2) {  //right
         currentLetter++;
         nameChange = true;
         setName();
@@ -1453,6 +1444,7 @@ void updatePositions() {
     if (inMainMenu == true) {  //in main menu
 
       if (option < lastMainPos) {  //UP
+        menuSound();
         option++;
         lcd.clear();
         menu();
@@ -1463,6 +1455,7 @@ void updatePositions() {
     else if (inSettings == true) {  //in settings
 
       if (setting < lastSettingsPos) {  // UP
+        menuSound();
         setting++;
         lcd.clear();
         settings();
@@ -1473,6 +1466,7 @@ void updatePositions() {
     else if (inHighScore == true) {  //in high score
 
       if (index < numTimes) {  // UP
+        menuSound();
         timeIndex++;
         index++;
         lcd.clear();
@@ -1515,6 +1509,7 @@ void updatePositions() {
     if (inMainMenu == true) {  //in main menu
 
       if (option > firstPos) {  //DOWN
+        menuSound();
         option--;
         lcd.clear();
         menu();
@@ -1525,6 +1520,7 @@ void updatePositions() {
     else if (inSettings == true) {  //in setting
 
       if (setting > firstPos) {  //DOWN
+        menuSound();
         setting--;
         lcd.clear();
         settings();
@@ -1535,6 +1531,7 @@ void updatePositions() {
     else if (inHighScore == true) {  //in high score
 
       if ((index - 1) > firstPos) {  // down
+        menuSound();
         index--;
         timeIndex--;
         lcd.clear();
@@ -1596,16 +1593,8 @@ void clearMatrix() {
 }
 
 void clearEEPROM() {
-  for (int i = timeIndex; i < numTimes; i++) {
-    topTimes[i] = 0;  // reset the high sores vectors
-  }
-
-  for (int i = firstPos; i < nameLet; i++) {
-    name[i] = 0;  // reset the high sores vectors
-  }
-
-  for (int i = firstPos; i < allNamesLet; i++) {
-    allNames[i] = 97;  // reset the name vector
+  for (int i = 0; i < allNamesLet; i++) {
+    allNames[i] = 65;  // reset the name vector
   }
 
   for (int i = highScoreAddress; i < highScoreAddress + numTimes; i++) {
@@ -1613,7 +1602,15 @@ void clearEEPROM() {
   }
 
   for (int i = playerAddress; i < playerAddress + allNamesLet; i++) {
-    EEPROM.update(i, 0);  // Write 0 to each address in the EEPROM
+    EEPROM.update(i, 65);  // Write 65 to each address in the EEPROM
+  }
+
+  for (int i = 0; i < numTimes; i++) {
+    topTimes[i] = EEPROM.read(highScoreAddress + i);
+  }
+
+  for (int i = 0; i < nameLet; i++) {
+    allNames[i] = EEPROM.read(playerAddress + i);
   }
 }
 
@@ -1662,6 +1659,14 @@ void checkGameWon() {
       winner = true;
       matrix4 = false;
     }
+  }
+}
+
+void menuSound() {
+  const int freq = 1000;
+  const int time = 300;
+  if (sound) {
+    tone(buzzerPin, freq, time);
   }
 }
 

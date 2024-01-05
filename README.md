@@ -72,9 +72,6 @@ Here's the menu I created for my game. You can scroll on the LCD with the joysti
   - LedControl.h (for matrix control)
   - EEPROM.h (for memory)
 
-### EEPROM Memory addresses 💾
-![EEPROMAddresses](https://github.com/lemnaruamedeea/MatrixProject-BombMania/blob/main/BombMania/EEPROMAddresses.jpeg?raw=true)
-
 ### Matrix Animation ✨
    **Main Menu**
 <p float="left">
